@@ -1,0 +1,27 @@
+{
+  "app": {
+    "bundleName": "com.liefery.android.tabdigit",
+    "vendor": "xenione",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {
+  },
+  "module": {
+    "package": "com.xenione.digit",
+    "deviceType": [
+      "phone",
+      "tablet",
+      "tv",
+      "wearable",
+      "car"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "digit",
+      "moduleType": "har"
+    }
+  }
+}

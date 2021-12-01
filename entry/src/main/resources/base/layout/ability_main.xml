@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="center"
+    ohos:orientation="vertical">
+
+    <com.xenione.digit.TabDigit
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:id="$+id:charView1"
+        />
+
+    <!--        android:id="@+id/charView1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_weight="1"-->
+<!--        custom:backgroundColor="#000000"-->
+<!--        custom:padding="10dp"-->
+<!--        custom:textColor="#ffffff"-->
+<!--        custom:textSize="60dp" />-->
+
+</DirectionalLayout>

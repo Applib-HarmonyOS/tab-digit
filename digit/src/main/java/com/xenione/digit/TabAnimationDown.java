@@ -1,12 +1,14 @@
 package com.xenione.digit;
 
+
+
 /**
- * rotates middle tab downwards
+ * rotates middle tab downwards.
  */
 public final class TabAnimationDown extends AbstractTabAnimation {
 
-    public TabAnimationDown(TabDigit.Tab mTopTab, TabDigit.Tab mBottomTab, TabDigit.Tab mMiddleTab) {
-        super(mTopTab, mBottomTab, mMiddleTab);
+    public TabAnimationDown(TabDigit.Tab topTab, TabDigit.Tab bottomTab, TabDigit.Tab middleTab) {
+        super(topTab, bottomTab, middleTab);
     }
 
     public void initState() {
@@ -20,7 +22,6 @@ public final class TabAnimationDown extends AbstractTabAnimation {
 
     @Override
     public void run() {
-
         if (mTime == -1) {
             return;
         }
@@ -61,13 +62,12 @@ public final class TabAnimationDown extends AbstractTabAnimation {
         if (mTime == -1) {
             return;
         }
-        switch (state) {
-            case LOWER_POSITION: {
-                mBottomTab.next();
-                state = UPPER_POSITION;
-                mTime = -1; // animation finished
-            }
+        if (state == LOWER_POSITION) {
+            mBottomTab.next();
+            state = UPPER_POSITION;
+            mTime = -1; // animation finished
+        } else {
+            mMiddleTab.rotate(180);
         }
-        mMiddleTab.rotate(180);
     }
 }
