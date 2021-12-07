@@ -1,7 +1,6 @@
 package com.xenione.digit;
 
 
-
 /**
  * rotates middle tab downwards.
  */
@@ -47,6 +46,8 @@ public final class TabAnimationDown extends AbstractTabAnimation {
                 state = MIDDLE_POSITION;
                 break;
             }
+            default:
+                break;
         }
 
         if (mTime != -1) {
@@ -66,8 +67,8 @@ public final class TabAnimationDown extends AbstractTabAnimation {
             mBottomTab.next();
             state = UPPER_POSITION;
             mTime = -1; // animation finished
-        } else {
-            mMiddleTab.rotate(180);
         }
+        mMiddleTab.rotate(180);
+
     }
 }

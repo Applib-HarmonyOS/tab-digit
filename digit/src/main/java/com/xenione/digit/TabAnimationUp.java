@@ -48,6 +48,8 @@ public final class TabAnimationUp extends AbstractTabAnimation {
                 }
                 break;
             }
+            default:
+                break;
         }
 
         if (mTime != -1) {

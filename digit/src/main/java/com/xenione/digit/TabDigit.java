@@ -2,35 +2,24 @@ package com.xenione.digit;
 
 import ohos.agp.animation.Animator;
 import ohos.agp.animation.AnimatorValue;
-import ohos.agp.colors.RgbColor;
-import ohos.agp.components.AttrHelper;
 import ohos.agp.components.AttrSet;
 import ohos.agp.components.Component;
-import ohos.agp.components.element.ShapeElement;
 import ohos.agp.render.Canvas;
 import ohos.agp.render.Paint;
-import ohos.agp.render.render3d.Engine;
-import ohos.agp.render.render3d.impl.AgpEngineFactory;
 import ohos.agp.utils.Color;
 import ohos.agp.utils.Matrix;
 import ohos.agp.utils.Rect;
 import ohos.app.Context;
-import ohos.app.dispatcher.TaskDispatcher;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
-import ohos.hiviewdfx.HiLog;
-import ohos.hiviewdfx.HiLogLabel;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by Eugeni on 16/10/2016.
  */
 public class TabDigit extends Component implements Runnable, Component.DrawTask,
         Component.EstimateSizeListener, Component.LayoutRefreshedListener {
-    private static final HiLogLabel LABEL_LOG = new HiLogLabel(HiLog.LOG_APP, 0x00201, "-MainAbility-");
 
     /*
      * false: rotate upwards
@@ -39,8 +28,6 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
     private boolean mReverseRotation = false;
 
     private Tab mMiddleTab;
-    Engine engine;
-    TaskDispatcher uiTaskDispatcher;
 
     //#region internal variables
     private List<Tab> tabs = new ArrayList<>(3);
@@ -56,17 +43,26 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
     private Paint mDividerPaint;
 
     private Paint mBackgroundPaint;
-    private Paint mBackgroundPaint1;
-    private Paint mBackgroundPaint2;
-    private Paint mBackgroundPaint3;
 
-    private Rect mTextMeasured = new Rect();
+    private final Rect mTextMeasured = new Rect();
 
     private int mPadding = 0;
 
     private char[] mChars = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    private EventHandler eventHandler;
+
+    private static final class TabDigitAttrs {
+        static final String TEXT_SIZE = "textSize";
+        static final String PADDING = "padding";
+        static final String CORNER_SIZE_Z = "cornerSizeZ";
+        static final String TEXT_COLOR = "textColor";
+        static final String BACKGROUND_COLOR = "backgroundColor";
+        static final String REVERSE_ROTATION = "reverseRotation";
+    }
+
     //#endregion internal variables
-    EventHandler eventHandler;
+
+
     //#region constructor
 
     public TabDigit(Context context) {
@@ -106,31 +102,36 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
         eventHandler = new EventHandler(EventRunner.getMainEventRunner());
         initPaints();
 
+        AttrUtils attrUtils = new AttrUtils(attrs);
 
-        int padding = AttrHelper.fp2px(10, getContext());
-        int textSize = AttrHelper.fp2px(60, getContext());
-        final int cornerSize = 30;
-        final boolean reverseRotation = false;
+        final int textSize = attrUtils.getDimensionFromAttr(TabDigitAttrs.TEXT_SIZE, -1);
+        final int padding = attrUtils.getDimensionFromAttr(TabDigitAttrs.PADDING, -1);
+        final int cornerSize = attrUtils.getDimensionFromAttr(TabDigitAttrs.CORNER_SIZE_Z, -1);
+        final Color textColor = attrUtils.getColorFromAttr(TabDigitAttrs.TEXT_COLOR, null);
+        final Color backgroundColor = attrUtils.getColorFromAttr(TabDigitAttrs.BACKGROUND_COLOR, null);
+        final boolean reverseRotation = attrUtils.getBooleanFromAttr(TabDigitAttrs.REVERSE_ROTATION, false);
 
-
-        HiLog.warn(LABEL_LOG, "TabDigit: textSize " + textSize);
-        if (textSize > 0) {
-            mNumberPaint.setTextSize(textSize);
-        }
         if (padding > 0) {
             mPadding = padding;
         }
+
+        if (textSize > 0) {
+            mNumberPaint.setTextSize(textSize);
+        }
+
         if (cornerSize > 0) {
             mCornerSize = cornerSize;
         }
 
+        if (textColor != null) {
+            mNumberPaint.setColor(textColor);
+        }
+        if (backgroundColor != null) {
+            mBackgroundPaint.setColor(backgroundColor);
+        }
+
         mReverseRotation = reverseRotation;
-        mReverseRotation = true;
 
-
-        Optional<Engine> optionalEngine = AgpEngineFactory.createEngine();
-        engine = optionalEngine.get();
-        uiTaskDispatcher = getContext().getUITaskDispatcher();
         initTabs();
 
     }
@@ -149,14 +150,8 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
         mDividerPaint.setStrokeWidth(1);
 
         mBackgroundPaint = new Paint();
-        mBackgroundPaint1 = new Paint();
-        mBackgroundPaint2 = new Paint();
-        mBackgroundPaint3 = new Paint();
         mBackgroundPaint.setAntiAlias(true);
         mBackgroundPaint.setColor(Color.BLACK);
-        mBackgroundPaint1.setColor(Color.BLUE);
-        mBackgroundPaint2.setColor(Color.YELLOW);
-        mBackgroundPaint3.setColor(Color.MAGENTA);
 
     }
 
@@ -165,21 +160,21 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
         animatorValue.setDuration(1000);
         animatorValue.setLoopedCount(Animator.INFINITE);
         // top Tab
-        Tab mTopTab = new Tab();
-        mTopTab.rotate(180);
-        tabs.add(mTopTab);
+        Tab topTab = new Tab();
+        topTab.rotate(180);
+        tabs.add(topTab);
 
         // bottom Tab
-        Tab mBottomTab = new Tab();
-        tabs.add(mBottomTab);
+        Tab bottomTab = new Tab();
+        tabs.add(bottomTab);
 
         // middle Tab
         mMiddleTab = new Tab();
         tabs.add(mMiddleTab);
 
-        tabAnimation = mReverseRotation
-                ? new TabAnimationDown(mTopTab, mBottomTab, mMiddleTab)
-                : new TabAnimationUp(mTopTab, mBottomTab, mMiddleTab);
+        tabAnimation = !mReverseRotation
+                ? new TabAnimationDown(topTab, bottomTab, mMiddleTab)
+                : new TabAnimationUp(topTab, bottomTab, mMiddleTab);
 
         tabAnimation.initMiddleTab();
 
@@ -215,10 +210,8 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
     }
 
     private void drawTabs(Canvas canvas) {
-        int i = 0;
         for (Tab tab : tabs) {
-            tab.draw(canvas, i);
-            i++;
+            tab.draw(canvas);
         }
     }
 
@@ -253,7 +246,7 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
     }
 
     public int getTextSize() {
-        return (int) mNumberPaint.getTextSize();
+        return mNumberPaint.getTextSize();
     }
 
     public void setPadding(int padding) {
@@ -280,7 +273,7 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
         mDividerPaint.setColor(color);
     }
 
-    public int getMPadding() {
+    public int getTabDigitPadding() {
         return mPadding;
     }
 
@@ -390,9 +383,6 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
         setEstimatedSize(EstimateSpec.getSizeWithMode(width, EstimateSpec.PRECISE),
                 EstimateSpec.getSizeWithMode(height, EstimateSpec.PRECISE));
 
-        ShapeElement shapeElement = new ShapeElement();
-        shapeElement.setRgbColor(new RgbColor(150, 150, 80));
-        setBackground(shapeElement);
         return true;
     }
 
@@ -499,33 +489,18 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
             MatrixHelper.rotateX(mRotationModelViewMatrix, alpha);
         }
 
-        public void draw(Canvas canvas, int i) {
-            drawBackground(canvas, i);
+        public void draw(Canvas canvas) {
+            drawBackground(canvas);
             drawText(canvas);
         }
 
         //#region draw
 
-        private void drawBackground(Canvas canvas, int i) {
-            Paint p;
-            switch (i) {
-                case 1:
-                    p = mBackgroundPaint2;
-                    break;
-                case 2:
-                    p = mBackgroundPaint3;
-                    break;
-                default:
-                case 0:
-                    p = mBackgroundPaint1;
-                    break;
-
-            }
+        private void drawBackground(Canvas canvas) {
             canvas.save();
-
             mModelViewMatrix.setMatrix(mRotationModelViewMatrix);
             applyTransformation(canvas, mModelViewMatrix);
-            canvas.drawRoundRect(mStartBounds.toRectFloat(), mCornerSize, mCornerSize, p);
+            canvas.drawRoundRect(mStartBounds.toRectFloat(), mCornerSize, mCornerSize, mBackgroundPaint);
             canvas.restore();
         }
 

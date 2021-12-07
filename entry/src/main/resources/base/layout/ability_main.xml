@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DirectionalLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:custom="http://schemas.huawei.com/res/custom"
     ohos:height="match_parent"
     ohos:width="match_parent"
     ohos:alignment="center"
@@ -10,6 +11,9 @@
         ohos:height="match_content"
         ohos:width="match_content"
         ohos:id="$+id:charView1"
+        custom:textSize="60fp"
+        custom:padding="10vp"
+        custom:backgroundColor="#000"
         />
 
     <!--        android:id="@+id/charView1"-->
