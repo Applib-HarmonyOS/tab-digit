@@ -122,9 +122,9 @@ public class ClockView extends DirectionalLayout implements Runnable {
         int lowSecond = (seconds - highSecond * 10);
         mCharLowSecond.setChar(lowSecond);
 
-        elapsedTime = lowSecond + highSecond * 10
-                + lowMinute * 60 + highMinute * 600
-                + lowHour * 3600 + highHour * 36000;
+        elapsedTime = lowSecond + (long) highSecond * 10
+                + (long) lowMinute * 60 + (long) highMinute * 600
+                + (long) lowHour * 3600 + highHour * 36000L;
 
         eventHandler.postTask(this, 1000);
     }

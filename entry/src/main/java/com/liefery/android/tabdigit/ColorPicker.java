@@ -35,6 +35,9 @@ public class ColorPicker extends DirectionalLayout {
     //#endregion constructor
     //#region properties
     static class ColorPickerAttrs {
+        private ColorPickerAttrs() {
+        }
+
         static final String LABEL = "label";
         static final String VALUE = "value";
         static final String TEXT_SIZE = "text_size";

@@ -67,22 +67,22 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
 
     public TabDigit(Context context) {
         super(context);
-        init(context, null);
+        init(null);
     }
 
     public TabDigit(Context context, AttrSet attrSet) {
         super(context, attrSet);
-        init(context, attrSet);
+        init(attrSet);
     }
 
     public TabDigit(Context context, AttrSet attrSet, String styleName) {
         super(context, attrSet, styleName);
-        init(context, attrSet);
+        init(attrSet);
     }
 
     public TabDigit(Context context, AttrSet attrSet, int resId) {
         super(context, attrSet, resId);
-        init(context, attrSet);
+        init(attrSet);
     }
 
     //#endregion constructor
@@ -92,10 +92,9 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
     /**
      * initialize the TabDigit.
      *
-     * @param context application context
-     * @param attrs   attrs
+     * @param attrs attrs
      */
-    private void init(Context context, AttrSet attrs) {
+    private void init(AttrSet attrs) {
         addDrawTask(this);
         setEstimateSizeListener(this);
         setLayoutRefreshedListener(this);
@@ -449,7 +448,7 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
             Rect area = new Rect(-width / 2, 0, width / 2, height / 2);
             mStartBounds.set(area);
             mEndBounds.set(area);
-            mEndBounds.offset(0, -(float) (height / 2));
+            mEndBounds.offset(0, -((float) height) / 2);
         }
 
         /**

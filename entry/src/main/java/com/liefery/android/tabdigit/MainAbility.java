@@ -77,12 +77,12 @@ public class MainAbility extends Ability implements Runnable {
 
         @Override
         public void onTouchStart(Slider slider) {
-
+            // no need
         }
 
         @Override
         public void onTouchEnd(Slider slider) {
-
+            // no need
         }
     };
 
@@ -97,12 +97,12 @@ public class MainAbility extends Ability implements Runnable {
 
         @Override
         public void onTouchStart(Slider slider) {
-
+            // no need
         }
 
         @Override
         public void onTouchEnd(Slider slider) {
-
+            // no need
         }
     };
 

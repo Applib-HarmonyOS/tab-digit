@@ -28,9 +28,9 @@ public class CountdownView extends DirectionalLayout implements Runnable {
 
     private boolean mPause = true;
 
-    private long startedTime = System.currentTimeMillis();
+    private final long startedTime = System.currentTimeMillis();
 
-    private long totalTime = 10 * 60 * 60; // 10 hours count down
+    private long totalTime = 10L * 60L * 60L; // 10 hours count down
 
     private long elapsedTime = 0;
 
@@ -59,22 +59,23 @@ public class CountdownView extends DirectionalLayout implements Runnable {
         eventHandler = new EventHandler(EventRunner.getMainEventRunner());
         setOrientation(HORIZONTAL);
         LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_clock, this, true);
-        mCharHighSecond = (TabDigit) findComponentById(ResourceTable.Id_charHighSecond);
-        mCharLowSecond = (TabDigit) findComponentById(ResourceTable.Id_charLowSecond);
         mCharHighMinute = (TabDigit) findComponentById(ResourceTable.Id_charHighMinute);
         mCharLowMinute = (TabDigit) findComponentById(ResourceTable.Id_charLowMinute);
+        mCharHighSecond = (TabDigit) findComponentById(ResourceTable.Id_charHighSecond);
+        mCharLowSecond = (TabDigit) findComponentById(ResourceTable.Id_charLowSecond);
         mCharHighHour = (TabDigit) findComponentById(ResourceTable.Id_charHighHour);
         mCharLowHour = (TabDigit) findComponentById(ResourceTable.Id_charLowHour);
 
-        mCharHighSecond.setTextSize(100);
-        mCharHighSecond.setChars(SEXAGISIMAL);
-        mCharLowSecond.setTextSize(100);
-        mCharLowSecond.setChars(DECIMAL);
 
         mCharHighMinute.setTextSize(100);
         mCharHighMinute.setChars(SEXAGISIMAL);
         mCharLowMinute.setTextSize(100);
         mCharLowMinute.setChars(DECIMAL);
+
+        mCharHighSecond.setTextSize(100);
+        mCharHighSecond.setChars(SEXAGISIMAL);
+        mCharLowSecond.setTextSize(100);
+        mCharLowSecond.setChars(DECIMAL);
 
         mCharHighHour.setTextSize(100);
         mCharHighHour.setChars(DECIMAL);
@@ -89,12 +90,12 @@ public class CountdownView extends DirectionalLayout implements Runnable {
      */
     public void pause() {
         mPause = true;
-        mCharHighSecond.sync();
-        mCharLowSecond.sync();
-        mCharHighMinute.sync();
-        mCharLowMinute.sync();
         mCharHighHour.sync();
         mCharLowHour.sync();
+        mCharHighMinute.sync();
+        mCharLowMinute.sync();
+        mCharHighSecond.sync();
+        mCharLowSecond.sync();
     }
 
     /**
@@ -147,20 +148,20 @@ public class CountdownView extends DirectionalLayout implements Runnable {
             return;
         }
         mCharLowSecond.start();
-        if (elapsedTime % 10 == 0) {
-            mCharHighSecond.start();
-        }
-        if (elapsedTime % 60 == 0) {
-            mCharLowMinute.start();
-        }
-        if (elapsedTime % 600 == 0) {
-            mCharHighMinute.start();
+        if (elapsedTime % 36000 == 0) {
+            mCharHighHour.start();
         }
         if (elapsedTime % 3600 == 0) {
             mCharLowHour.start();
         }
-        if (elapsedTime % 36000 == 0) {
-            mCharHighHour.start();
+        if (elapsedTime % 600 == 0) {
+            mCharHighMinute.start();
+        }
+        if (elapsedTime % 60 == 0) {
+            mCharLowMinute.start();
+        }
+        if (elapsedTime % 10 == 0) {
+            mCharHighSecond.start();
         }
         elapsedTime += 1;
         eventHandler.postTask(this, 1000);

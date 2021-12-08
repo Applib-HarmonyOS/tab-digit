@@ -6,6 +6,9 @@ import ohos.hiviewdfx.HiLogLabel;
 
 /**
  * MatrixPrecomputed.
+ * because there is no api for camera.rotateX method we are precomputing the rotateX beforehand.
+ * because of our use-case the alpha value wouldn't be getter than 180° so we can precompute
+ * the matrix for the alpha value.
  */
 public class MatrixPrecomputed {
     private static final HiLogLabel LABEL_LOG = new HiLogLabel(HiLog.LOG_APP, 0x00201, "-MainAbility-");
