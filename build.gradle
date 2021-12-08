@@ -51,9 +51,13 @@ allprojects {
     }
 }
 
+checkstyle {
+    toolVersion "8.43"
+}
+
 sonarqube {
     properties {
-        property "sonar.projectKey", "TabDigit"
+        property "sonar.projectKey", "applibgroup_tab-digit"
         property "sonar.organization", "applibgroup"
         property "sonar.host.url", "https://sonarcloud.io/"
         property "sonar.java.checkstyle.reportPaths", "checkstyle.xml"

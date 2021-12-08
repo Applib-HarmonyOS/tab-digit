@@ -12,7 +12,6 @@ import ohos.agp.utils.Rect;
 import ohos.app.Context;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
-
 import java.util.ArrayList;
 import java.util.List;
 
