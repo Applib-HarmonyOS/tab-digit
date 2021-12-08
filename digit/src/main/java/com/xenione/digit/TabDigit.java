@@ -12,6 +12,7 @@ import ohos.agp.utils.Rect;
 import ohos.app.Context;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +31,11 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
     private Tab mMiddleTab;
 
     //#region internal variables
-    private List<Tab> tabs = new ArrayList<>(3);
+    private final List<Tab> tabs = new ArrayList<>(3);
 
     private AbstractTabAnimation tabAnimation;
 
-    private Matrix mProjectionMatrix = new Matrix();
+    private final Matrix mProjectionMatrix = new Matrix();
 
     private int mCornerSize;
 
@@ -95,7 +96,7 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
      * @param context application context
      * @param attrs   attrs
      */
-    public void init(Context context, AttrSet attrs) {
+    private void init(Context context, AttrSet attrs) {
         addDrawTask(this);
         setEstimateSizeListener(this);
         setLayoutRefreshedListener(this);
@@ -219,9 +220,9 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
         canvas.save();
         canvas.concat(mProjectionMatrix);
         canvas.drawLine(
-                -canvas.getLocalClipBounds().getWidth() / 2,
+                (float) (-canvas.getLocalClipBounds().getWidth() / 2),
                 0,
-                canvas.getLocalClipBounds().getWidth() / 2,
+                (float) (canvas.getLocalClipBounds().getWidth() / 2),
                 0,
                 mDividerPaint
         );
@@ -240,18 +241,30 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
 
     //#region getter & setter
 
+    /**
+     * set text size.
+     *
+     * @param size size of the text in pixel
+     */
     public void setTextSize(int size) {
         mNumberPaint.setTextSize(size);
         invalidate();
+        postLayout();
     }
 
     public int getTextSize() {
         return mNumberPaint.getTextSize();
     }
 
+    /**
+     * sets padding for the tab digit.
+     *
+     * @param padding padding in pixel
+     */
     public void setPadding(int padding) {
         mPadding = padding;
         invalidate();
+        postLayout();
     }
 
     /**
@@ -420,9 +433,9 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
 
         private int mAlpha;
 
-        private Matrix mMeasuredMatrixHeight = new Matrix();
+        private final Matrix mMeasuredMatrixHeight = new Matrix();
 
-        private Matrix mMeasuredMatrixWidth = new Matrix();
+        private final Matrix mMeasuredMatrixWidth = new Matrix();
         //#endregion internal variable
 
         //#region calculation
@@ -437,7 +450,7 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
             Rect area = new Rect(-width / 2, 0, width / 2, height / 2);
             mStartBounds.set(area);
             mEndBounds.set(area);
-            mEndBounds.offset(0, -height / 2);
+            mEndBounds.offset(0, -(float) (height / 2));
         }
 
         /**

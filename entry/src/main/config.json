@@ -33,7 +33,9 @@
               "entity.system.home"
             ],
             "actions": [
-              "action.system.home"
+              "action.system.home",
+              "action.clock",
+              "action.countdown"
             ]
           }
         ],
@@ -44,6 +46,22 @@
         "label": "$string:entry_MainAbility",
         "type": "page",
         "launchType": "standard"
+      },
+      {
+        "icon": "$media:icon",
+        "name": "com.liefery.android.tabdigit.ClockAbility",
+        "description": "ClockAbility",
+        "launchType": "standard",
+        "type": "page",
+        "visible": true
+      },
+      {
+        "icon": "$media:icon",
+        "name": "com.liefery.android.tabdigit.CountdownAbility",
+        "description": "CountdownAbility",
+        "type": "page",
+        "launchType": "standard",
+        "visible": true
       }
     ]
   }

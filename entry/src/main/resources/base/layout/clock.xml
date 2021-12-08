@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:clock="http://schemas.huawei.com/res/clock"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="vertical_center"
+    ohos:orientation="horizontal"
+    >
+
+    <com.xenione.digit.TabDigit
+        ohos:id="$+id:charHighHour"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        clock:backgroundColor="#000000"
+        clock:padding="20vp"
+        clock:textColor="#ffffff"
+        clock:textSize="100fp"
+        />
+
+    <com.xenione.digit.TabDigit
+        ohos:id="$+id:charLowHour"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        clock:backgroundColor="#000000"
+        clock:padding="20vp"
+        clock:textColor="#ffffff"
+        clock:textSize="100fp"
+        />
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="center"
+        ohos:text=":"
+        ohos:text_size="60fp"
+        />
+
+    <com.xenione.digit.TabDigit
+        ohos:id="$+id:charHighMinute"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        clock:backgroundColor="#000000"
+        clock:padding="20vp"
+        clock:textColor="#ffffff"
+        clock:textSize="100fp"
+        />
+
+    <com.xenione.digit.TabDigit
+        ohos:id="$+id:charLowMinute"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        clock:backgroundColor="#000000"
+        clock:padding="20vp"
+        clock:textColor="#ffffff"
+        clock:textSize="100fp"
+        />
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:layout_alignment="center"
+        ohos:text=":"
+        ohos:text_size="60fp"
+        />
+
+    <com.xenione.digit.TabDigit
+        ohos:id="$+id:charHighSecond"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        clock:backgroundColor="#000000"
+        clock:padding="20vp"
+        clock:textColor="#ffffff"
+        clock:textSize="100fp"
+        />
+
+    <com.xenione.digit.TabDigit
+        ohos:id="$+id:charLowSecond"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        clock:backgroundColor="#000000"
+        clock:padding="20vp"
+        clock:textColor="#ffffff"
+        clock:textSize="100fp"
+        />
+
+</DirectionalLayout>
