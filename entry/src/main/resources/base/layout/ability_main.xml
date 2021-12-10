@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DirectionalLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:digit="http://schemas.huawei.com/res/digit"
     xmlns:custom="http://schemas.huawei.com/res/custom"
     ohos:height="match_parent"
     ohos:width="match_parent"
@@ -56,10 +57,9 @@
                 ohos:height="match_content"
                 ohos:width="0"
                 ohos:weight="1"
-                custom:label="Background Color"
-                custom:text_size="24fp"
-                custom:value="#000"
-
+                digit:label="Background Color"
+                digit:text_size="24fp"
+                digit:value="#000"
                 />
         </DirectionalLayout>
     </DirectionalLayout>
@@ -72,12 +72,13 @@
         ohos:weight="1">
 
         <com.xenione.digit.TabDigit
-            ohos:id="$+id:charView1"
+            ohos:id="$+id:tabDigit1"
             ohos:height="match_content"
             ohos:width="match_content"
-            custom:backgroundColor="#000"
-            custom:padding="10vp"
-            custom:textSize="160fp"
+            digit:backgroundColor="#000000"
+            digit:textColor="#ffffff"
+            digit:padding="10vp"
+            digit:textSize="160fp"
             />
     </DirectionalLayout>
 

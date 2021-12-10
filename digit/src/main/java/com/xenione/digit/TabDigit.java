@@ -12,6 +12,7 @@ import ohos.agp.utils.Rect;
 import ohos.app.Context;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,7 +172,7 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
         mMiddleTab = new Tab();
         tabs.add(mMiddleTab);
 
-        tabAnimation = !mReverseRotation
+        tabAnimation = mReverseRotation
                 ? new TabAnimationDown(topTab, bottomTab, mMiddleTab)
                 : new TabAnimationUp(topTab, bottomTab, mMiddleTab);
 
@@ -228,10 +229,7 @@ public class TabDigit extends Component implements Runnable, Component.DrawTask,
     }
 
     private void calculateTextSize(Rect rect) {
-        Rect rect1 = mNumberPaint.getTextBounds(
-                "8"
-                //, 0, 1, rect
-        );
+        Rect rect1 = mNumberPaint.getTextBounds("8");
         rect.modify(rect1);
     }
     //#endregion some calculation not important

@@ -21,7 +21,7 @@ public class MainAbility extends Ability implements Runnable {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_main);
-        tabDigit1 = (TabDigit) findComponentById(ResourceTable.Id_charView1);
+        tabDigit1 = (TabDigit) findComponentById(ResourceTable.Id_tabDigit1);
         assert tabDigit1 != null;
         eventHandler = new EventHandler(EventRunner.getMainEventRunner());
         eventHandler.postTask(this, 1000);
