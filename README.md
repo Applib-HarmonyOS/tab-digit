@@ -5,11 +5,11 @@ A Flip Clock Library
 ---
 This library has been inspired by [xenione/tab-digit](https://github.com/xenione/tab-digit)
 
-![tab-digit](assets/control-demo.gif)
+<img alt="tab-digit" src="assets/control-demo.gif" style="height: 400px" />
 
 this is what you can do with Tab digit
 
-![tab-digit](assets/clock-demo.gif)
+<img alt="tab-digit" src="assets/clock-demo.gif" style="height: 400px" />
 
 ### Integration
 **From Source**
