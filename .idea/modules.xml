@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DemoDigit.iml" filepath="$PROJECT_DIR$/DemoDigit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/digit/digit.iml" filepath="$PROJECT_DIR$/digit/digit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/digit/digit.iml" filepath="$PROJECT_DIR$/.idea/modules/digit/digit.iml" group="tab-digit/digit" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/entry/entry.iml" filepath="$PROJECT_DIR$/.idea/modules/entry/entry.iml" group="tab-digit/entry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tab-digit.iml" filepath="$PROJECT_DIR$/.idea/modules/tab-digit.iml" group="tab-digit" />
     </modules>
   </component>
 </project>

@@ -1,55 +1,58 @@
 # Tab Digit
+A Flip Clock Library
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Tab%20digit-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4786)  [![Download](https://api.bintray.com/packages/xenione/maven/tab-digit/images/download.svg) ](https://bintray.com/xenione/maven/tab-digit/_latestVersion)
+### Source
+---
+This library has been inspired by [xenione/tab-digit](https://github.com/xenione/tab-digit)
 
-A Flip Clock Libray.Have a look at the demo app available on [google play](https://play.google.com/store/apps/details?id=com.xenione.libs.digit)
-
-![tab-digit](https://cloud.githubusercontent.com/assets/4138527/20869273/258ed640-ba6f-11e6-892c-a5986896134c.gif)
+<img alt="tab-digit" src="assets/control-demo.gif" style="height: 400px" />
 
 this is what you can do with Tab digit
 
-![clock](https://cloud.githubusercontent.com/assets/4138527/20869514/f503a208-ba73-11e6-800b-802d493e1a86.gif)
+<img alt="tab-digit" src="assets/clock-demo.gif" style="height: 400px" />
 
-
-Add it on your project:
-
-Gradle:
-```java 
-compile 'com.xenione.libs:tab-digit:1.0.2'
-```
-
+### Integration
+**From Source**
+1. For using Tab Digit module in sample app, include the source code and add the below dependencies in entry/build.gradle to generate hap/support.har.
+    ```groovy
+    implementation project(path: ':digit')
+    ```
+2. For using Tab Digit module in separate application using har file, add the har file in the entry/libs folder and add the dependencies in entry/build.gradle file.
+    ```groovy
+   implementation fileTree(dir: 'libs', include: ['*.har'])
+   
+### Usages
 Add tabdigit in your layout, you can set attributes like background or text color, text size and padding through xml as shown.
-
-```java 
- <com.xenione.digit.TabDigit
-     xmlns:digit="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/tabDigit1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        digit:backgroundColor="#000000"
-        digit:padding="10dp"
-        digit:textColor="#ffffff"
-        digit:textSize="60dp" />
-  ```      
+```xml
+<com.xenione.digit.TabDigit
+    ohos:id="$+id:tabDigit1"
+    ohos:height="match_content"
+    ohos:width="match_content"
+    digit:backgroundColor="#000000"
+    digit:textColor="#ffffff"
+    digit:padding="10vp"
+    digit:textSize="160fp"
+    />
+```
 
 start animation calling start().
 
-```java 
+```java
 tabDigit1.start();
-  ```  
+```  
 Increase digit every second:
-
-```java 
-ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
-
+```java
+EventHandler eventHandler = new EventHandler(EventRunner.getMainEventRunner()); 
 @Override
-    public void run() {
-        tabDigit1.start();
-        ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
-    }
-  ```  
+public void run() {
+    tabDigit1.start();
+    eventHandler.postTask(this, 1000);
+}
+```
+
+
+Take a look at the [sample project](entry) for more information.
+
 
 # License
 -------

@@ -1,0 +1,68 @@
+{
+  "app": {
+    "bundleName": "com.liefery.android.tabdigit",
+    "vendor": "liefery",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.liefery.android.tabdigit",
+    "name": ".MyApplication",
+    "mainAbility": "com.liefery.android.tabdigit.MainAbility",
+    "deviceType": [
+      "phone",
+      "tablet",
+      "tv",
+      "wearable",
+      "car"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home",
+              "action.clock",
+              "action.countdown"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "name": "com.liefery.android.tabdigit.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "icon": "$media:icon",
+        "name": "com.liefery.android.tabdigit.ClockAbility",
+        "description": "ClockAbility",
+        "launchType": "standard",
+        "type": "page",
+        "visible": true
+      },
+      {
+        "icon": "$media:icon",
+        "name": "com.liefery.android.tabdigit.CountdownAbility",
+        "description": "CountdownAbility",
+        "type": "page",
+        "launchType": "standard",
+        "visible": true
+      }
+    ]
+  }
+}

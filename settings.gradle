@@ -1,1 +1,1 @@
-include ':app', ':digit'
+include ':entry', ':digit'

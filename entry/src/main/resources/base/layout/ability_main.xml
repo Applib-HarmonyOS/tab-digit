@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    xmlns:digit="http://schemas.huawei.com/res/digit"
+    xmlns:custom="http://schemas.huawei.com/res/custom"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:orientation="vertical"
+    ohos:padding="20vp">
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="vertical">
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="Text Size"
+            ohos:text_size="24fp"/>
+
+        <Slider
+            ohos:id="$+id:size_bar"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:max="400"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="Padding size"
+            ohos:text_size="24fp"/>
+
+        <Slider
+            ohos:id="$+id:padding_size_bar"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:max="100"/>
+
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:orientation="horizontal">
+
+            <com.liefery.android.tabdigit.ColorPicker
+                ohos:id="$+id:textColor"
+                ohos:height="match_content"
+                ohos:width="0"
+                ohos:weight="1"
+                custom:label="Text Color"
+                custom:text_size="24fp"
+                custom:value="#ffffff"
+                />
+
+            <com.liefery.android.tabdigit.ColorPicker
+                ohos:id="$+id:backgroundColor"
+                ohos:height="match_content"
+                ohos:width="0"
+                ohos:weight="1"
+                digit:label="Background Color"
+                digit:text_size="24fp"
+                digit:value="#000"
+                />
+        </DirectionalLayout>
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:height="0"
+        ohos:width="match_content"
+        ohos:alignment="center"
+        ohos:layout_alignment="center"
+        ohos:weight="1">
+
+        <com.xenione.digit.TabDigit
+            ohos:id="$+id:tabDigit1"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            digit:backgroundColor="#000000"
+            digit:textColor="#ffffff"
+            digit:padding="10vp"
+            digit:textSize="160fp"
+            />
+    </DirectionalLayout>
+
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:right_margin="15vp"
+        ohos:text="More Demos:"
+        ohos:text_size="24fp"/>
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:orientation="horizontal"
+        >
+
+        <Button
+            ohos:id="$+id:btnClock"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:right_margin="6vp"
+            ohos:text="Clock"
+            ohos:text_color="#FF0099FF"
+            ohos:text_size="24fp"/>
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:right_margin="6vp"
+            ohos:text="|"
+            ohos:text_size="24fp"/>
+
+        <Button
+            ohos:id="$+id:btnCountDown"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="CountDown"
+            ohos:text_color="#FF0099FF"
+            ohos:text_size="24fp"/>
+    </DirectionalLayout>
+
+
+</DirectionalLayout>
